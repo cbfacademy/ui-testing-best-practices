@@ -1,0 +1,53 @@
+login_page:
+  id:
+    username: user-name
+    password: password
+    login_button: login-button
+  css:
+    error_message: "[data-test='error']"
+    inventory_container: ".inventory_list"
+    menu_button: "#react-burger-menu-btn"
+    logout_link: "#logout_sidebar_link"
+
+inventory_page:
+  css:
+    inventory_container: ".inventory_list"
+    item: ".inventory_item"
+    item_name: ".inventory_item_name"
+    add_to_cart_btn: "button[id^='add-to-cart']"
+    remove_btn: "button[id^='remove']"
+    cart_link: ".shopping_cart_link"
+    cart_badge: ".shopping_cart_badge"
+
+cart_page:
+  css:
+    cart_item: ".cart_item"
+    item_name: ".inventory_item_name"
+    remove_btn: "button[id^='remove']"
+    checkout_button: "[data-test='checkout']"
+    continue_shopping: "[data-test='continue-shopping']"
+    cart_list_container: ".cart_list"
+
+checkout_info_page:
+  id:
+    first_name: first-name
+    last_name: last-name
+    postal_code: postal-code
+  css:
+    continue_button: "[data-test='continue']"
+    cancel_button: "[data-test='cancel']"
+
+checkout_overview_page:
+  css:
+    item_name: ".inventory_item_name"
+    summary_subtotal: ".summary_subtotal_label"
+    summary_tax: ".summary_tax_label"
+    summary_total: ".summary_total_label"
+    finish_button: "[data-test='finish']"
+    cancel_button: "[data-test='cancel']"
+
+checkout_complete_page:
+  css:
+    complete_header: ".complete-header"
+    complete_text: ".complete-text"
+    back_home: "[data-test='back-to-products']"

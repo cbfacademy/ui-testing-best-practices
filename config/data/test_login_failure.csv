@@ -1,0 +1,4 @@
+username,password,expected_error_start
+locked_out_user,valid_password,Epic sadface: Sorry, this user has been locked out
+standard_user,wrong_pass,Epic sadface: Username and password do not match
+no_such_user,valid_password,Epic sadface: Username and password do not match

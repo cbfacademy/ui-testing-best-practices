@@ -1,0 +1,8 @@
+.idea
+.venv
+*.iml
+.idea/misc.xml
+
+# project specific
+reports/*
+test-results/*

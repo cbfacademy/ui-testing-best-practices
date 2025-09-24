@@ -1,0 +1,4 @@
+missing_field,first,last,postal,expected_error
+first_name,,Doe,12345,Error: First Name is required
+last_name,John,,12345,Error: Last Name is required
+postal_code,John,Doe,,Error: Postal Code is required

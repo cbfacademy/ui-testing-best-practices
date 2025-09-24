@@ -1,0 +1,49 @@
+[project]
+name = "ui-testing-best-practices"
+version = "0.0.1"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "pytest>=8.4.2",
+    "playwright>=1.55.0",
+    "allure-pytest>=2.15.0",
+    "pytest-playwright>=0.7.1",
+    "pyyaml>=6.0.2",
+]
+
+[dependency-groups]
+dev = [
+    "taskipy>=1.14.1",
+    "ruff>=0.13.1",
+    "pytest-xdist>=3.8.0",
+    "pylint>=2.17.4",
+]
+
+[tool.pytest.ini_options]
+bdd_features_base_dir = "tests/features"
+testpaths = ["tests"]
+cache_dir = "/tmp/.pytest_cache"
+addopts = ["--alluredir=reports/json", "--clean-alluredir", "--verbose"]
+filterwarnings = [
+    "ignore::FutureWarning",
+    "ignore::DeprecationWarning",
+    "ignore::UserWarning"
+]
+
+[tool.taskipy.tasks]
+tests = "python -m pytest -s"
+code-scan = "pylint test_client tests"
+ruff-format-diff = "python -m ruff format tests test_client --diff"
+ruff-format = "python -m ruff format tests test_client"
+view-report = "allure serve --name UI_Testing_Best_Practices reports/json"
+generate-report = "allure generate reports/json -o test-results/html --clean"
+
+
+[tool.ruff]
+line-length = 150
+
+[tool.ruff.format]
+quote-style = "single"
+indent-style = "space"
+docstring-code-format = true

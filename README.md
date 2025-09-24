@@ -23,7 +23,7 @@ Short overview: A Python-based Playwright + pytest example repository illustrati
 Set required environment variables:
 ```bash
 export APP_USER="standard_user"
-export APP_PASSWORD="super_secret"
+export APP_PASSWORD="secret_sauce"
 ```
 
 Create venv, sync deps and run tests:

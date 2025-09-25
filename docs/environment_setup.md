@@ -10,7 +10,7 @@ Optional runtime overrides (pass as pytest args when needed):
 - --browser (chromium | firefox | webkit | msedge)
 - --headed / --headless
 - --video on / off (record_video in pytest.ini)
-- --env selection pattern if you implement custom switching logic (current profiles: env.local, env.local-edge, env.dev, env.qa, env.prod in pytest.ini)
+- --env=env-name selection pattern if you implement custom switching logic (current profiles: env.local, env.local-edge, env.dev, env.qa, env.prod in pytest.ini)
 
 Set required variables before running tests:
 

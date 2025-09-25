@@ -43,5 +43,5 @@ uv run allure generate reports/json -o test-results/html --clean
 
 ## Notes
 - Sensitive credentials are supplied via `APP_USER` and `APP_PASSWORD` and referenced in `pytest.ini` via placeholders.
-- Use `pytest --env qa` to pick environment overlays defined in `pytest.ini`.
+- Use `pytest --env=qa` to pick environment overlays defined in `pytest.ini`.
 - Artifacts (videos/screenshots) are written to predictable folders for CI collection: `test-results/videos`, `reports/json`.

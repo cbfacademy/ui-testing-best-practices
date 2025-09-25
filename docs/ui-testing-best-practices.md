@@ -39,7 +39,7 @@ Advantages:
 
 ## 4. Environment \& Runtime Configuration
 [`pytest.ini`](../pytest.ini) holds base defaults plus environment overlays (`[env.local]`, `[env.qa]`, etc.).  
-Runtime selection: `pytest --env qa`.  
+Runtime selection: `pytest --env=qa`.  
 Sensitive/runtime values injected via placeholder keys:
 - `standard_app_user_env = ${APP_USER}`
 - `app_password_env = ${APP_PASSWORD}`  
@@ -85,7 +85,7 @@ Secrets provided via environment variables referenced indirectly:
 ## 9. CI Readiness
 Deterministic, environment-driven runs:
 ```
-pytest --env qa --alluredir reports/json
+pytest --env=qa --alluredir reports/json
 ```
 Then generate human-readable report:
 ```

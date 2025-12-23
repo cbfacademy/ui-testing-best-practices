@@ -2,6 +2,7 @@
 .venv
 *.iml
 .idea/misc.xml
+**/__pycache__/**
 
 # project specific
 reports/*

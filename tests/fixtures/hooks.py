@@ -20,6 +20,7 @@ def pytest_addoption(parser):
     parser.addini('record_video', 'Record video: true|false', default='true')
     parser.addini('slowmo', 'Slow motion (ms)', default='0')
     parser.addini('screenshot_on', 'Screenshot capture: always|teardown|failure', default='teardown')
+    parser.addini('trace', 'Playwright trace: on|off|on-first-retry|retain-on-failure', default='off')
     parser.addini('allure_dir', 'Allure results directory', default='reports/json')
     parser.addini('base_url', 'Base URL for app under test', default='https://www.saucedemo.com')
     parser.addini('app_password_env', 'Environment variable name or placeholder for valid app password', default='APP_PASSWORD')

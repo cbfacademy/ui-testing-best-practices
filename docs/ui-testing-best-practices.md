@@ -11,6 +11,7 @@ Layers:
 - Utilities: shared helpers in [`test_client/util/`](../test_client/util/)
 - Configuration: [`pytest.ini`](../pytest.ini), locator map [`config/locators.yml`](../config/locators.yml)
 - Fixtures: reusable setup in [`tests/fixtures/`](../tests/fixtures/) (e.g. [`tests/fixtures/browser.py`](../tests/fixtures/browser.py))  
+- Test Overviews: [Login](tests/test_login.md), [Checkout](tests/test_checkout.md), [Accessibility](tests/test_accessibility.md), [API](tests/test_api.md), [Visual](tests/test_visual.md)  
   Benefits: clarity, low coupling, easier refactors.
 
 ---

@@ -1,7 +1,7 @@
 [project]
 name = "ui-testing-best-practices"
 version = "0.0.1"
-description = "Add your description here"
+description = "A Playwright + Pytest best practices demo project for tech graduates."
 readme = "README.md"
 requires-python = ">=3.12"
 dependencies = [
@@ -10,6 +10,7 @@ dependencies = [
     "allure-pytest>=2.15.0",
     "pytest-playwright>=0.7.1",
     "pyyaml>=6.0.2",
+    "axe-playwright-python>=0.1.7",
 ]
 
 [dependency-groups]
@@ -21,10 +22,8 @@ dev = [
 ]
 
 [tool.pytest.ini_options]
-bdd_features_base_dir = "tests/features"
 testpaths = ["tests"]
-cache_dir = "/tmp/.pytest_cache"
-addopts = ["--alluredir=reports/json", "--clean-alluredir", "--verbose"]
+cache_dir = ".pytest_cache"
 filterwarnings = [
     "ignore::FutureWarning",
     "ignore::DeprecationWarning",

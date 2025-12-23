@@ -46,7 +46,7 @@ def _sanitize_filename(name: str) -> str:
 
 
 @pytest.fixture(scope='function')
-def page(request, tmp_path):
+def page(playwright, request, tmp_path):
     """Create a Playwright page with per-test video recording.
 
     Video files are produced in a temporary directory and moved to
@@ -61,6 +61,7 @@ def page(request, tmp_path):
     record_video = _bool(config_value('record_video'))
     slowmo = int(config_value('slowmo') or 0)
     screenshot_policy = config_value('screenshot_on').lower()  # always|teardown|failure
+    trace_policy = config_value('trace').lower()
     base_url = config_value('base_url')
     # --------------------------------
 
@@ -68,15 +69,16 @@ def page(request, tmp_path):
     if record_video:
         videos_dir.mkdir(parents=True, exist_ok=True)
 
-    with sync_playwright() as p:
-        # Select browser
-        if browser_name == 'firefox':
-            browser_type = p.firefox
-        elif browser_name == 'webkit':
-            browser_type = p.webkit
-        else:
-            browser_name = 'chromium'
-            browser_type = p.chromium
+    # Use the playwright fixture instead of sync_playwright() context manager
+    p = playwright
+    # Select browser
+    if browser_name == 'firefox':
+        browser_type = p.firefox
+    elif browser_name == 'webkit':
+        browser_type = p.webkit
+    else:
+        browser_name = 'chromium'
+        browser_type = p.chromium
 
         launch_kwargs = {'headless': headless}
         if browser_name == 'chromium' and channel:
@@ -93,6 +95,8 @@ def page(request, tmp_path):
             context_kwargs['record_video_dir'] = str(videos_dir)
 
         context = browser.new_context(**context_kwargs)
+        if trace_policy != 'off':
+            context.tracing.start(screenshots=True, snapshots=True, sources=True)
         page = context.new_page()
 
         # Navigate to base_url early (convenience)
@@ -109,6 +113,24 @@ def page(request, tmp_path):
                 screenshot_path = tmp_path / 'screenshot.png'
                 page.screenshot(path=str(screenshot_path), full_page=True)
                 allure.attach.file(str(screenshot_path), name=f'Screenshot - {request.node.name}', attachment_type=AttachmentType.PNG)
+            except Exception:
+                pass
+
+        if trace_policy != 'off':
+            try:
+                trace_path = tmp_path / 'trace.zip'
+                context.tracing.stop(path=str(trace_path))
+                if trace_path.exists():
+                    allure.attach.file(str(trace_path), name=f'Trace - {request.node.name}', attachment_type=AttachmentType.ZIP)
+            except Exception:
+                pass
+
+        if trace_policy != 'off':
+            try:
+                trace_path = tmp_path / 'trace.zip'
+                context.tracing.stop(path=str(trace_path))
+                if trace_path.exists():
+                    allure.attach.file(str(trace_path), name=f'Trace - {request.node.name}', attachment_type=AttachmentType.ZIP)
             except Exception:
                 pass
 
